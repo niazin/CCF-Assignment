@@ -95,11 +95,11 @@ jobs:
       - name: Install gh-pages
         run: npm install --save gh-pages
     
-      # Deploy to GitHub Pages using gh-pages
-      - name: Deploy to GitHub Pages
-        run: npx gh-pages -d build -r "https://github.com/${{ github.repository }}"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # # Deploy to GitHub Pages using gh-pages
+      # - name: Deploy to GitHub Pages
+      #   run: npx gh-pages -d build -r "https://github.com/${{ github.repository }}"
+      #   env:
+      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       # Clean up after deployment (optional)
       - name: Clean up
