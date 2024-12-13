@@ -44,7 +44,7 @@ jobs:
     - name: Clean up
       run: rm -rf build
     - name: Deploy to GitHub Pages
-            env:
-              GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Using the token stored in GitHub Secrets
-            run: |
-              npx gh-pages -d build -r "https://github.com/${{ github.repository }}.git" -u "https://${GH_TOKEN}@github.com/${{ github.repository }}.git"
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Using the token stored in GitHub Secrets
+      run: |
+        npx gh-pages -d build -r "https://github.com/${{ github.repository }}.git" -u "https://${GH_TOKEN}@github.com/${{ github.repository }}.git"
