@@ -92,7 +92,7 @@ const Maze = () => {
         return () =>{
             window.removeEventListener("keydown", handleKey)
         };
-    }, [playerPosition, playerDirection]);
+    }, [playerPosition, playerDirection, handleKey]);
 
     return (
         <div>
