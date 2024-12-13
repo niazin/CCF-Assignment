@@ -64,35 +64,57 @@ const Maze = () => {
     }; //end of move player arrow function
 
     // in the maze we want the user to choose their direction through keyborad arrow keys! 
-    const handleKey = (e) => {
-        switch (e.key){
-            case "ArrowUp":
-                setPlayerDirection("up")
-                break
-            case "ArrowDown":
-                setPlayerDirection("down")
-                break
-            case "ArrowLeft":
-                setPlayerDirection("left")
-                break
-            case "ArrowRight":
-                setPlayerDirection("right")
-                break
-            case "Enter":
-                movePlayerForward(playerDirection); //TODO I need to make sure if this is ok and if the direction is not clear, the user cannot move forward!
-                break
-            default:
-                break; 
-        }
-    }
+    // function handleKey(e) {
+    //     switch (e.key) {
+    //         case "ArrowUp":
+    //             setPlayerDirection("up");
+    //             break;
+    //         case "ArrowDown":
+    //             setPlayerDirection("down");
+    //             break;
+    //         case "ArrowLeft":
+    //             setPlayerDirection("left");
+    //             break;
+    //         case "ArrowRight":
+    //             setPlayerDirection("right");
+    //             break;
+    //         case "Enter":
+    //             movePlayerForward(playerDirection); //TODO I need to make sure if this is ok and if the direction is not clear, the user cannot move forward!
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // }
     
     // we already took care of movement, direction, updating position! now we need to render the page each time user make a movement! 
     useEffect (() => {
+        function handleKey(e) {
+            switch (e.key) {
+                case "ArrowUp":
+                    setPlayerDirection("up");
+                    break;
+                case "ArrowDown":
+                    setPlayerDirection("down");
+                    break;
+                case "ArrowLeft":
+                    setPlayerDirection("left");
+                    break;
+                case "ArrowRight":
+                    setPlayerDirection("right");
+                    break;
+                case "Enter":
+                    movePlayerForward(playerDirection); //TODO I need to make sure if this is ok and if the direction is not clear, the user cannot move forward!
+                    break;
+                default:
+                    break;
+            }
+        }
+
         window.addEventListener("keydown", handleKey);
         return () =>{
             window.removeEventListener("keydown", handleKey)
         };
-    }, [playerPosition, playerDirection, handleKey]);
+    }, [playerPosition, playerDirection]);
 
     return (
         <div>
