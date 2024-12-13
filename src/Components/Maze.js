@@ -87,6 +87,8 @@ const Maze = () => {
     // }
     
     // we already took care of movement, direction, updating position! now we need to render the page each time user make a movement! 
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect (() => {
         function handleKey(e) {
             switch (e.key) {
