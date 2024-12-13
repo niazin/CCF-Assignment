@@ -1,3 +1,59 @@
+# name: Deploy React App to GitHub Pages
+
+# on:
+#   push:
+#     branches:
+#       - main  # This can be 'master' or 'main', depending on your default branch
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest  # Specifies the virtual environment for the job
+    
+#     steps:
+#     # Checkout the code
+#     - name: Checkout code
+#       uses: actions/checkout@v2
+#         # Step to set up Git user information
+#     - name: Set up Git user
+#       run: |
+#         git config --global user.name "niazin"
+#         git config --global user.email "nafise.niazi@gmail.com"
+#       # Set up Node.js environment
+#     - name: Set up Node.js
+#       uses: actions/setup-node@v2
+#       with:
+#         node-version: '16'  # Use Node.js version 16 or any version you need
+    
+#     # Install dependencies
+#     - name: Install dependencies
+#       run: npm install
+    
+#     # Build the React app
+#     - name: Build React app
+#       run: npm run build
+    
+#     # Install gh-pages to deploy to GitHub Pages
+#     - name: Install gh-pages
+#       run: npm install --save gh-pages
+    
+#     # Deploy to GitHub Pages
+#     - name: Deploy to GitHub Pages
+#       run: npm run deploy
+
+#     # Clean up after deployment
+#     - name: Clean up
+#       run: rm -rf build
+#     - name: Deploy to GitHub Pages
+#       run: |
+#         git config --global user.name "niazin"
+#         git config --global user.email "nafise.niazi@gmail.com"
+#         npx gh-pages -d build -r "https://${GH_TOKEN}@github.com/${{ github.repository }}.git" -u
+#       env:
+#         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pass GITHUB_TOKEN securely
+
+
+
+
 name: Deploy React App to GitHub Pages
 
 on:
@@ -8,46 +64,43 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest  # Specifies the virtual environment for the job
-    
+
     steps:
-    # Checkout the code
-    - name: Checkout code
-      uses: actions/checkout@v2
-        # Step to set up Git user information
-    - name: Set up Git user
-      run: |
-        git config --global user.name "niazin"
-        git config --global user.email "nafise.niazi@gmail.com"
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step to set up Git user information
+      - name: Set up Git user
+        run: |
+          git config --global user.name "niazin"
+          git config --global user.email "nafise.niazi@gmail.com"
+        
       # Set up Node.js environment
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'  # Use Node.js version 16 or any version you need
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # Use Node.js version 16 or any version you need
+        
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
     
-    # Install dependencies
-    - name: Install dependencies
-      run: npm install
+      # Build the React app
+      - name: Build React app
+        run: npm run build
     
-    # Build the React app
-    - name: Build React app
-      run: npm run build
+      # Install gh-pages to deploy to GitHub Pages (optional, only needed if not already in package.json)
+      - name: Install gh-pages
+        run: npm install --save gh-pages
     
-    # Install gh-pages to deploy to GitHub Pages
-    - name: Install gh-pages
-      run: npm install --save gh-pages
-    
-    # Deploy to GitHub Pages
-    - name: Deploy to GitHub Pages
-      run: npm run deploy
+      # Deploy to GitHub Pages using gh-pages
+      - name: Deploy to GitHub Pages
+        run: |
+          npx gh-pages -d build -r "https://${GH_TOKEN}@github.com/${{ github.repository }}.git" -u
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pass GITHUB_TOKEN securely
 
-    # Clean up after deployment
-    - name: Clean up
-      run: rm -rf build
-    - name: Deploy to GitHub Pages
-      run: |
-        git config --global user.name "niazin"
-        git config --global user.email "nafise.niazi@gmail.com"
-        npx gh-pages -d build -r "https://${GH_TOKEN}@github.com/${{ github.repository }}.git" -u
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pass GITHUB_TOKEN securely
-
+      # Clean up after deployment (optional, to clean build artifacts)
+      - name: Clean up
+        run: rm -rf build
