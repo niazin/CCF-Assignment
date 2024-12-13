@@ -70,7 +70,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Step to set up Git user information
+      # Set up Git user information
       - name: Set up Git user
         run: |
           git config --global user.name "niazin"
@@ -90,13 +90,17 @@ jobs:
       - name: Build React app
         run: npm run build
     
-      # Install gh-pages to deploy to GitHub Pages (optional, only needed if not already in package.json)
+      # Install gh-pages to deploy to GitHub Pages
       - name: Install gh-pages
         run: npm install --save gh-pages
     
       # Deploy to GitHub Pages using gh-pages
       - name: Deploy to GitHub Pages
         run: |
-          npx gh-pages -d build -r "https://${GH_TOKEN}@github.com/${{ github.repository }}.git"
+          npx gh-pages -d build -r "https://$GH_TOKEN@github.com/${{ github.repository }}.git"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pass GITHUB_TOKEN sec
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pass GITHUB_TOKEN securely
+
+      # Clean up after deployment (optional)
+      - name: Clean up
+        run: rm -rf build
