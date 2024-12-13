@@ -16,7 +16,7 @@ jobs:
         # Step to set up Git user information
     - name: Set up Git user
       run: |
-        git config --global user.name "Nafise"
+        git config --global user.name "niazin"
         git config --global user.email "nafise.niazi@gmail.com"
       # Set up Node.js environment
     - name: Set up Node.js
