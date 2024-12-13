@@ -50,4 +50,4 @@ jobs:
         deploy_branch: gh-pages  # Branch where the files will be deployed
         folder: build            # Folder to deploy (e.g., 'build' after running npm run build)
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub automatically provides this secret
+        GITHUB_TOKEN: ${{ secrets.ccf_assignment }}  # GitHub automatically provides this secret
