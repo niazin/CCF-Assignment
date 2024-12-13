@@ -43,11 +43,8 @@ jobs:
     # Clean up after deployment
     - name: Clean up
       run: rm -rf build
-      # Step to deploy to GitHub Pages
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        deploy_branch: gh-pages  # Branch where the files will be deployed
-        folder: build            # Folder to deploy (e.g., 'build' after running npm run build)
-      env:
-        GITHUB_TOKEN: ${{ secrets.ccf_assignment }}  # GitHub automatically provides this secret
+            env:
+              GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Using the token stored in GitHub Secrets
+            run: |
+              npx gh-pages -d build -r "https://github.com/${{ github.repository }}.git" -u "https://${GH_TOKEN}@github.com/${{ github.repository }}.git"
