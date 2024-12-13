@@ -1,0 +1,83 @@
+// Maze.css
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.maze-container {
+    display: inline-block;
+    margin: 20px auto;
+    border: 2px solid #333;
+    background-color: #fff;
+    padding: 10px;
+}
+.maze-row{
+    display: flex;
+}
+
+.maze-cell {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.maze-cell.wall {
+    background-color: #333;
+    color: black;
+}
+.maze-cell.player {
+    background-color: #4caf50;
+    color: white;
+}
+.controls button {
+    margin: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.controls button:hover{
+    background-color: #ddd;
+}
+
+.message{
+    margin-top: 20px;
+    font-size: 18px;
+    color: green;
+}
+
+.move-controls {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.move-controls button {  padding: 10px 20px; /* Add padding to make the button larger */
+    font-size: 18px; /* Increase the font size for readability */
+    background-color: #4caf50; /* Green background for the move button */
+    color: white; /* White text color */
+    border: none; /* Remove the default border */
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Change cursor to a pointer when hovering */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+  }
+  
+  /* Hover effect for the "Move" button */
+  .move-controls button:hover {
+    background-color: #45a049; /* Darker green when hovering */
+  }
