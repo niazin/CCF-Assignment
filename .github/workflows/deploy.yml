@@ -97,10 +97,6 @@ jobs:
       # Deploy to GitHub Pages using gh-pages
       - name: Deploy to GitHub Pages
         run: |
-          npx gh-pages -d build -r "https://${GH_TOKEN}@github.com/${{ github.repository }}.git" -u
+          npx gh-pages -d build -r "https://${GH_TOKEN}@github.com/${{ github.repository }}.git"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pass GITHUB_TOKEN securely
-
-      # Clean up after deployment (optional, to clean build artifacts)
-      - name: Clean up
-        run: rm -rf build
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pass GITHUB_TOKEN sec
