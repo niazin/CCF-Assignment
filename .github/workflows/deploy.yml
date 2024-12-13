@@ -1,0 +1,41 @@
+name: Deploy React App to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # This can be 'master' or 'main', depending on your default branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Specifies the virtual environment for the job
+    
+    steps:
+    # Checkout the code
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    # Set up Node.js environment
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'  # Use Node.js version 16 or any version you need
+    
+    # Install dependencies
+    - name: Install dependencies
+      run: npm install
+    
+    # Build the React app
+    - name: Build React app
+      run: npm run build
+    
+    # Install gh-pages to deploy to GitHub Pages
+    - name: Install gh-pages
+      run: npm install --save gh-pages
+    
+    # Deploy to GitHub Pages
+    - name: Deploy to GitHub Pages
+      run: npm run deploy
+
+    # Clean up after deployment
+    - name: Clean up
+      run: rm -rf build
